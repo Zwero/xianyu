@@ -1,6 +1,6 @@
 <template>
-    <div class="box">
-首页
+    <div>
+        123
     </div>
 </template>
 

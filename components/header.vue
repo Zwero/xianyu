@@ -16,14 +16,49 @@
       </el-row>
       <!-- 登录 -->
       <el-row type="flex" align="middle" class="login">
-        <nuxt-link to="/user/login" class="account-link">登录 / 注册</nuxt-link>
+        <el-dropdown >
+          <span class="el-dropdown-link">
+            <i class="el-icon-bell el-icon--right"></i>
+            消息
+            <i class="el-icon-arrow-down el-icon--right"></i>
+          </span>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item>消息</el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+
+        <!-- 有用户信息 -->
+        <el-dropdown v-if="false">
+          <el-row type='rlex' align="middle" class="el-dropdown-link">
+            <nuxt-link>
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6Ix4LpDroRNPg6ggOlEWvlfY0GMAaxD4kARKmpT7irJhdAE4t" alt="">
+            </nuxt-link>
+            <i class="el-icon-arrow-down el-icon--right"></i>
+          </el-row>
+
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item>
+                <nuxt-link to="#">个人中心</nuxt-link>
+            </el-dropdown-item>
+            <el-dropdown-item>
+                <nuxt-link @click="handleLogout">退出</nuxt-link>
+            </el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+        <!-- 没有用户信息注册链接 -->
+        <nuxt-link to="/user/login" class="account-link" v-else>登录 / 注册</nuxt-link>
       </el-row>
     </el-row>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    // 用户退出
+    handleLogout() {}
+  }
+};
 </script>
 
 <style lang="less" scoped>
@@ -69,7 +104,14 @@ export default {};
     }
     // 登录
     .login {
+      .el-dropdown {
+        cursor: pointer; 
+        .el-icon-bell {
+          font-size: 18px;
+        }
+      }
       a {
+        margin-left: 10px;
         &:hover,
         &:focus {
           color: #409eff;
