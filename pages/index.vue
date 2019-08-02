@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <!-- 轮播图 -->
-    <el-carousel :interval="5000" arrow="always">
+    <el-carousel :interval="3000" arrow="always">
       <el-carousel-item v-for="(item, index) in banners" :key="index">
         <div
           class="banner-image"
@@ -185,9 +185,9 @@ export default {
         .search-input{
             width:550px;
             height:46px;
-            background:#fff;
+            background:rgba(0,0,0,0.3);
             border-radius: 0 4px 4px 4px;
-            border: 1px rgba(255,255,255,.2) solid;
+            border: 1px rgba(255,255,255,.3) solid;
             border-top:none;
             box-sizing: unset;
 
@@ -198,6 +198,8 @@ export default {
                 outline: none;
                 border:0;
                 font-size:16px;
+                background:rgba(0,0,0,0.5);
+                color:beige;
             }
 
             .el-icon-search{

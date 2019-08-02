@@ -16,7 +16,7 @@
       </el-row>
       <!-- 登录 -->
       <el-row type="flex" align="middle" class="login">
-        <el-dropdown >
+        <el-dropdown>
           <span class="el-dropdown-link">
             <i class="el-icon-bell el-icon--right"></i>
             消息
@@ -27,24 +27,27 @@
           </el-dropdown-menu>
         </el-dropdown>
 
-        <!-- 有用户信息 -->
-        <el-dropdown v-if="false">
-          <el-row type='rlex' align="middle" class="el-dropdown-link">
-            <nuxt-link>
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6Ix4LpDroRNPg6ggOlEWvlfY0GMAaxD4kARKmpT7irJhdAE4t" alt="">
+        <!-- 如果用户存在则展示用户信息，用户数据来自store -->
+
+        <el-dropdown v-if="$store.state.user.userInfo&&$store.state.user.userInfo.token">
+          <el-row type="flex" align="middle" class="el-dropdown-link">
+            <nuxt-link to="#">
+              <img :src="$axios.defaults.baseURL + $store.state.user.userInfo.user.defaultAvatar" />
+              {{$store.state.user.userInfo.user.nickname}}
             </nuxt-link>
-            <i class="el-icon-arrow-down el-icon--right"></i>
+            <i class="el-icon-caret-bottom el-icon--right"></i>
           </el-row>
 
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item>
-                <nuxt-link to="#">个人中心</nuxt-link>
+              <nuxt-link to="#">个人中心</nuxt-link>
             </el-dropdown-item>
             <el-dropdown-item>
-                <nuxt-link @click="handleLogout">退出</nuxt-link>
+              <div @click="handleLogout">退出</div>
             </el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
+
         <!-- 没有用户信息注册链接 -->
         <nuxt-link to="/user/login" class="account-link" v-else>登录 / 注册</nuxt-link>
       </el-row>
@@ -56,7 +59,15 @@
 export default {
   methods: {
     // 用户退出
-    handleLogout() {}
+    handleLogout() {
+      const { commit } = this.$store;
+      commit("user/cleanUserInfo");
+
+      this.$message({
+        message: "退出成功",
+        type: "success"
+      });
+    }
   }
 };
 </script>
@@ -105,7 +116,13 @@ export default {
     // 登录
     .login {
       .el-dropdown {
-        cursor: pointer; 
+        cursor: pointer;
+        img {
+          width: 36px;
+          height: 36px;
+          vertical-align: middle;
+          padding-right: 8px;
+        }
         .el-icon-bell {
           font-size: 18px;
         }
