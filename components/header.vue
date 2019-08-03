@@ -3,7 +3,7 @@
     <el-row class="main" type="flex">
       <!-- logo -->
       <div class="logo">
-        <nuxt-link to="/air">
+        <nuxt-link to="/">
           <img src="http://157.122.54.189:9093/images/logo.jpg" alt />
         </nuxt-link>
       </div>
