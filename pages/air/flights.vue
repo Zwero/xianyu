@@ -5,6 +5,8 @@
             <!-- 顶部过滤列表 -->
             <div class="flights-content">
                 <!-- 过滤条件 -->
+                <!-- 把数据传递给筛选组件, 还要给个点击事件保存到一个新数组中 -->
+                <FlightsFilters :data='cacheFlightsData' @setDataList='setDataList'/>
                 <div>
                     
                 </div>
@@ -50,12 +52,24 @@
 
 import FlightsListHead from "@/components/air/flightsListHead.vue"
 import FlightsItem from "@/components/air/flightsItem.vue"
+import FlightsFilters from "@/components/air/flightsFilters.vue"
 
 export default {
     data(){
         return {
+
+            // 传值给子组件
             // 后台返回的大的数据列表
-            flightsData: {},
+            flightsData: {
+                flights: [],
+                info: {},
+                options: {}
+            },
+            cacheFlightsData: { // 缓存一份数据，只会修改一次
+                flights: [],     
+                info: {},
+                options: {}
+            },
 
             // 保存当前显示的列表数据
             dataList: [],
@@ -71,7 +85,18 @@ export default {
 
     components: {
         FlightsListHead,
-        FlightsItem
+        FlightsItem,
+        FlightsFilters
+    },
+
+    watch: {
+        // 监听路由信息的变化
+        $route(){
+            // console.log(this.$route)
+            // 请求新的数据
+        this.pageIndex = 1;
+        this.getData();
+        }
     },
 
     methods: {
@@ -80,7 +105,7 @@ export default {
             // 修改分页条数
             this.pageSize = value;
             // 获取分页的数据
-            this.getDataList();
+            this.setDataList();
         },
 
         // 切换页数时候触发
@@ -89,38 +114,55 @@ export default {
             this.pageIndex = value;
 
             // 获取分页的数据
-            this.getDataList();
+            this.setDataList();
         },
 
         // 获取分页的数据
-        getDataList(){
+        setDataList(arr){
+            // 过滤组件调用时候返回的过滤后的数据
+            if(arr){
+                // 替换掉列表数据
+                 this.flightsData.flights = arr;
+                 this.total = arr.length;
+            }
              // 修改dataList的数据 //0 | 2 //2 | 4
            this.dataList = this.flightsData.flights.slice( 
                (this.pageIndex - 1) * this.pageSize,  
                (this.pageIndex  - 1) * this.pageSize + this.pageSize 
             );
-        }
+        },
+        
+        // 请求列表数据
+        getData () {
+            console.log(456);
+            this.$axios({
+                url: "/airs",
+                method: "GET",
+                params: this.$route.query
+            }).then(res => {
+                // 保存总的大数据
+                this.flightsData = res.data;
+                // console.log('总数据',this.flightsData);
+                // 总条数
+                this.total = this.flightsData.flights.length;
+
+                // 切割出当前页面要显示的数据
+                this.dataList = this.flightsData.flights.slice( 0, 8 );
+
+                // 缓存一份新的列表数据数据，这个列表不会被修改
+                    // 而flightsData会被修改
+                    this.cacheFlightsData = {...res.data};
+                    
+            });
+        },
     },
 
-    mounted(){
+    mounted () {
         // console.log(this.$route.query)
+        // console.log(123);
+       this.getData()
+    },
 
-        // 请求列表数据
-        this.$axios({
-            url: "/airs",
-            method: "GET",
-            params: this.$route.query
-        }).then(res => {
-            // 保存总的大数据
-            this.flightsData = res.data;
-            
-            // 总条数
-            this.total = this.flightsData.flights.length;
-
-            // 切割出当前页面要显示的数据
-            this.dataList = this.flightsData.flights.slice( 0, 8 );
-        });
-    }
 }
 </script>
 
