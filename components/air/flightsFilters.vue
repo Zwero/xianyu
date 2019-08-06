@@ -75,17 +75,6 @@ export default {
     };
   },
 
-          // watch是监听属性，可以监听实例下所有的属性变化 this.xxx
-    watch: {
-        // 监听路由信息的变化
-        $route(){
-            // console.log(this.$route)
-            // 请求新的数据
-        this.pageIndex = 1;
-        this.getData();
-        }
-    },
-
     methods: {
     // 选择机场时候触发
     handleAirport(value) {
@@ -122,7 +111,6 @@ export default {
     // 选择机型时候触发
     handleAirSize(value) {
         // console.log(value);
-        // console.log(123);
         const arr = this.data.flights.filter(v => 
             v.plane_size === value
         );

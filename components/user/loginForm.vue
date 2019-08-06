@@ -67,7 +67,6 @@ export default {
 
             // 这个什么东西
         //   this.$store.dispatch("/accounts/login", this.form).then(res => {
-        //     console.log(123);
         //     // 成功提示
         //     this.$message({
         //       message: "登录成功，正在跳转",

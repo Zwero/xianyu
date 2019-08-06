@@ -200,6 +200,15 @@ export default {
                 })
                 return;
             }
+            // 添加到本地存储
+            const airs = JSON.parse(localStorage.getItem('airs') || `[]`);
+            airs.unshift(this.form)
+
+            if(airs.length > 5 ){
+                airs.length = 5
+            }
+            localStorage.setItem("airs", JSON.stringify(airs));
+
             // 跳转到机票列表页
             this.$router.push({
                     path: "/air/flights",

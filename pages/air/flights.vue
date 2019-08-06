@@ -43,6 +43,7 @@
             <!-- 侧边栏 -->
             <div class="aside">
                 <!-- 侧边栏组件 -->
+                <FlightsAside/>
             </div>
         </el-row>
     </section>
@@ -53,6 +54,7 @@
 import FlightsListHead from "@/components/air/flightsListHead.vue"
 import FlightsItem from "@/components/air/flightsItem.vue"
 import FlightsFilters from "@/components/air/flightsFilters.vue"
+import FlightsAside from "@/components/air/flightsAside.vue"
 
 export default {
     data(){
@@ -86,14 +88,13 @@ export default {
     components: {
         FlightsListHead,
         FlightsItem,
-        FlightsFilters
+        FlightsFilters,
+        FlightsAside
     },
 
     watch: {
         // 监听路由信息的变化
-        $route(){
-            // console.log(this.$route)
-            // 请求新的数据
+        $route(){            // 请求新的数据
         this.pageIndex = 1;
         this.getData();
         }
@@ -134,7 +135,6 @@ export default {
         
         // 请求列表数据
         getData () {
-            console.log(456);
             this.$axios({
                 url: "/airs",
                 method: "GET",
@@ -151,18 +151,16 @@ export default {
 
                 // 缓存一份新的列表数据数据，这个列表不会被修改
                     // 而flightsData会被修改
-                    this.cacheFlightsData = {...res.data};
-                    
+                 this.cacheFlightsData = {...res.data};
             });
         },
     },
 
-    mounted () {
-        // console.log(this.$route.query)
-        // console.log(123);
-       this.getData()
-    },
 
+    mounted () {
+       this.getData()
+
+    },
 }
 </script>
 
