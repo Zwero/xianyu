@@ -49,6 +49,7 @@
                         <el-col :span="3" class="choose-button">
                             <el-button 
                             type="warning" 
+                            @click="handleToLink( data.id,  item.seat_xid )"
                             size="mini">
                             选定
                             </el-button>
@@ -77,6 +78,18 @@ export default {
         data: {
             type: Object, // 表示数据类型
             default: {} // 如果调用组件时候不传该属性，会取这个默认值
+        }
+    },
+
+    methods: {
+        handleToLink (id, seat_xid) {
+            this.$router.push({
+                path: "/air/order",
+                query: {
+                    id,
+                    seat_xid
+                }
+            })
         }
     },
 
