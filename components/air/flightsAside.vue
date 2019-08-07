@@ -53,7 +53,6 @@ export default {
     mounted(){
         // 获取历史记录
         this.airsLog = JSON.parse(localStorage.getItem("airs") || `[]`);
-        // console.log('历史记录数据',this.airsLog);
     }
 }
 </script>
