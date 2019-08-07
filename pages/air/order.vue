@@ -42,14 +42,12 @@ export default {
             }
         }).then(res => {
             this.infoData = res.data;
-            console.log(this.infoData);
         })
     },
     methods: {
          // 用于接收子组件返回的总价格
         setAllPrice( price ){
             this.allPrice = price;
-            console.log('总额',this.allPrice);
         }
     }
 

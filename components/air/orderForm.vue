@@ -87,7 +87,7 @@ export default {
         data: {
             type: Object,
             default: {}
-        }
+        },
     },
     data () {
         return {
@@ -100,30 +100,30 @@ export default {
             contactPhone: '',
             invoice: false,
             captcha: '',
-            infoData: {  } // 机票信息
+            // infoData: {  } // 机票信息
         }
     },
     computed: {
         // computed函数内部引用的实例的属性一旦发生变化
         // 重复调用，返回新的值
         allPrice(){
-            console.log(123);
-            console.log('allprice35165165');
-            console.log('12346');
+            // console.log('data',this.data.seat_infos);
+            // console.log(this.infoData.seat_infos);
+
            let price = 0;
              // 接口还没返回，默认是0
-            if(!this.infoData.seat_infos){
+            if(!this.data.seat_infos){
                 return  0;
             }
            // 单价
-           price += this.infoData.seat_infos.org_settle_price;
+           price += this.data.seat_infos.org_settle_price;
            // 燃油费
-           price += this.infoData.airport_tax_audlet;
+           price += this.data.airport_tax_audlet;
             //  保险
            price += this.insurances.length * 30;
             // 人数
             price *= this.users.length;
-            console.log('价格', price);
+            // console.log('价格', price);
             // 把总价格返回给父组件
             this.$emit("setAllPrice", price)
              return price;
@@ -178,7 +178,7 @@ export default {
 
         // 提交订单
         handleSubmit(){
-            console.log(123);
+            // console.log(123);
              const data = {
             users: this.users,
             insurances: this.insurances,
