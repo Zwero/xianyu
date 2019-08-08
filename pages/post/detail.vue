@@ -11,16 +11,22 @@
     <DetailTitleRight/>
     <!-- 详情内容 -->
     <div class="contents">
-        文章内容
+        <DetailContent/>
     </div>
   </div>
 </template>
 
 <script>
+// 侧边栏
 import DetailTitleRight from '@/components/post/detailTitleRight'
+// 内容详情
+import DetailContent from '@/components/post/detailcontent'
+// 评论区
+
 export default {
     components: {
-        DetailTitleRight
+        DetailTitleRight,
+        DetailContent
     },
 };
 </script>
@@ -31,7 +37,8 @@ export default {
         margin: 0 auto;
         margin-top: 20px;
         position: relative;
-        height: 500px;
+        // height: 1000px;
+        min-height: 500px;
         .bread {
             width: 280px;
         }
@@ -39,6 +46,9 @@ export default {
             position: absolute;
             top: 0;
             right: 0;
+        }
+        .contents {
+            width: 700px;
         }
     }
 </style>
