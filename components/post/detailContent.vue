@@ -48,18 +48,27 @@ export default {
       content: {}
     };
   },
+  methods: {
+    init() {
+      console.log(123);
+      let id = this.$route.id;
+      console.log("这是你要的ID", id);
+      this.$axios({
+        url: "posts",
+        params: {
+          id: 4
+        }
+      }).then(res => {
+        console.log("文章内容", res);
+        this.content = res.data.data[0];
+        console.log(this.content);
+        // console.log(this.content.city.created_at);
+      });
+    }
+  },
   mounted() {
-    this.$axios({
-      url: "posts",
-      params: {
-        id: 4
-      }
-    }).then(res => {
-      console.log("文章内容", res);
-      this.content = res.data.data[0];
-      console.log(this.content);
-      // console.log(this.content.city.created_at);
-    });
+    console.log('开始');
+    this.init()
   }
 };
 </script>

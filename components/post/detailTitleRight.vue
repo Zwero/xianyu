@@ -52,9 +52,11 @@ export default {
     img {
       width: 100px;
       height: 80px;
+      margin-right: 8px;
     }
     .titleName {
       height: 63px;
+      width: 170px;
       font-size: 14px;
       margin-top: 3px;
     }
