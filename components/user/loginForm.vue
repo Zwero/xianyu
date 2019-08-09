@@ -55,7 +55,6 @@ export default {
             method: "POST",
             data: this.form
           }).then(res => {
-              console.log(res.data);
             const data = res.data;
             this.$store.commit("user/setUserInfo", data);
             // 跳转到首页

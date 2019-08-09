@@ -107,8 +107,6 @@ export default {
         // computed函数内部引用的实例的属性一旦发生变化
         // 重复调用，返回新的值
         allPrice(){
-            // console.log('data',this.data.seat_infos);
-            // console.log(this.infoData.seat_infos);
 
            let price = 0;
              // 接口还没返回，默认是0
@@ -166,7 +164,6 @@ export default {
         handleInsurance (item) {
             // 判断数组中是否存在id，如果存在需要删除
             const index = this.insurances.indexOf(item.id);
-            console.log(index);
             if(index > -1){
                 //删除
                 this.insurances.splice( index, 1 )
@@ -221,6 +218,7 @@ export default {
                     Authorization: `Bearer ${ this.$store.state.user.userInfo.token }`
                 }
             }).then(res => {
+<<<<<<< HEAD
                 console.log('成功了',res);
                 this.$router.push({
                     url: '/air/pay',
@@ -228,6 +226,16 @@ export default {
                         id
                     }
                 })
+=======
+                const {data: {id}} = res.data;
+                // 跳转到付款页
+                this.$router.push({
+                    path: "/air/pay",
+                    query: {
+                       id
+                    }
+                });
+>>>>>>> 466431a1b45ff7339750a18ef297df63cb2e273a
             })
         }
 

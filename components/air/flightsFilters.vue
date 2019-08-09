@@ -110,7 +110,6 @@ export default {
 
     // 选择机型时候触发
     handleAirSize(value) {
-        // console.log(value);
         const arr = this.data.flights.filter(v => 
             v.plane_size === value
         );
