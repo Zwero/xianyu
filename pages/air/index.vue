@@ -8,7 +8,7 @@
     <!-- 搜索广告栏 -->
     <el-row type="flex" justify="space-between">
       <!-- 搜索表单 -->
-      <SearchForm/>>
+      <SearchForm/>
 
       <!-- banner广告 -->
       <div class="sale-banner">
