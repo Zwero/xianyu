@@ -18,7 +18,7 @@
         <!-- 地图 -->
         <el-col :span="10">
             <HotelMap></HotelMap>
-        </el-col>
+        </el-col>（╯' - ')╯︵ ┻━┻ 
       </el-row>
     </div>
     <!-- 过滤栏 -->
