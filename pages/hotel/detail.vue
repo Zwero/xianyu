@@ -242,7 +242,7 @@ export default {
           width: 160px;
           height: 110px;
           background: orange;
-          img{
+          img {
             width: 100%;
             height: 100%;
           }
