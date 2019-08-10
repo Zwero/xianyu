@@ -5,7 +5,7 @@
     <el-table :data="tableData2" style="width: 100%">
       <el-table-column prop="products.name" label="价格来源" width="420"></el-table-column>
       <el-table-column prop="name" label="低价房型" width="420"></el-table-column>
-      <el-table-column prop="address" label="最低价/每晚"></el-table-column>
+      <el-table-column prop="$ address" label="最低价/每晚"></el-table-column>
     </el-table>
   </div>
 </template>

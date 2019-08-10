@@ -33,7 +33,7 @@
               v-for="(item2,index2) in picture"
               :key="index2"
               :src="`${item2.urls}`"
-              v-if="current === index2"
+              v-show="current === index2"
               alt
             />
           </i>
