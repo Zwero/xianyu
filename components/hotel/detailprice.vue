@@ -1,11 +1,19 @@
 <template>
   <div>
     <!-- 酒店价格 -->
+<<<<<<< HEAD
+
+    <el-table :data="products" style="width: 100%">
+      <el-table-column prop="name" label="价格来源" width="420"></el-table-column>
+      <el-table-column prop="bestType" label="低价房型" width="420"></el-table-column>
+      <el-table-column prop="price" label="最低价/每晚"></el-table-column>
+=======
     
     <el-table :data="tableData2" style="width: 100%">
       <el-table-column prop="products.name" label="价格来源" width="420"></el-table-column>
       <el-table-column prop="name" label="低价房型" width="420"></el-table-column>
       <el-table-column prop="address" label="最低价/每晚"></el-table-column>
+>>>>>>> 969e0797e1904d731e147ec5d1af20aa384d9bfa
     </el-table>
   </div>
 </template>
@@ -15,6 +23,10 @@ export default {
   props: {
     products: {
       type: Array,
+<<<<<<< HEAD
+      default: []
+    }
+=======
       default:[ ]
     }
   },
@@ -55,8 +67,18 @@ export default {
         }
       ]
     };
+>>>>>>> 969e0797e1904d731e147ec5d1af20aa384d9bfa
   }
 };
 </script>
 <style lang="less" scoped>
+<<<<<<< HEAD
+
+.microcheiria{
+  cursor:pointer
+}
+
+
+=======
+>>>>>>> 969e0797e1904d731e147ec5d1af20aa384d9bfa
 </style>

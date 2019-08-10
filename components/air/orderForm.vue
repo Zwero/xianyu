@@ -194,6 +194,28 @@ export default {
               // JWT是后台的token的标准，前端只管传递一个Bearer
               Authorization: `Bearer ${this.$store.state.user.userInfo.token}`
             }
+<<<<<<< HEAD
+
+            // 提交订单
+            this.$axios({
+                url: "/airorders",
+                method: 'POST',
+                data,
+                // 头信息不是axios的，ajax也有
+                headers: {
+                    // JWT是后台的token的标准，前端只管传递一个Bearer
+                    Authorization: `Bearer ${ this.$store.state.user.userInfo.token }`
+                }
+            }).then(res => {
+                console.log('成功了',res);
+                this.$router.push({
+                    url: '/air/pay',
+                    query: {
+                        id
+                    }
+                })
+            })
+=======
           }).then(res => {
             console.log("成功了", res);
             this.$router.push({
@@ -213,6 +235,7 @@ export default {
               }
             });
           });
+>>>>>>> 969e0797e1904d731e147ec5d1af20aa384d9bfa
         }
       });
       // 如果不通过直接返回

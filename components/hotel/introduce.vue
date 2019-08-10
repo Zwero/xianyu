@@ -79,8 +79,12 @@ export default {
       value: 3,
       max: 3
     };
+<<<<<<< HEAD
+  }
+=======
   },
   
+>>>>>>> 969e0797e1904d731e147ec5d1af20aa384d9bfa
 };
 </script>
 <style lang="less" scoped>
