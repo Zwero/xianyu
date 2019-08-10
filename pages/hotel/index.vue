@@ -24,7 +24,7 @@
       </div>
       <!-- 过滤栏 -->
       <div class="filters">
-        <Filterss></Filterss>
+        <Filterss @options="options"></Filterss>
       </div>
       <!-- 酒店列表 分页栏 -->
       <div class="hotel_list">
@@ -138,8 +138,8 @@ export default {
       this.$axios({
         url: "hotels/options"
       }).then(res => {
-        console.log("酒店", res);
-        cb(res);
+        // console.log("酒店", res.data.data);
+        cb(res.data.data);
       });
     },
     // 获取分页的数据
