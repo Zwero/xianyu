@@ -1,9 +1,5 @@
 <template>
   <div class="box">
-<<<<<<< HEAD
-    机票首页
-=======
->>>>>>> 969e0797e1904d731e147ec5d1af20aa384d9bfa
     <div class="hotel">
       <!-- 头部面包屑 -->
       <div class="breadcrumb">
