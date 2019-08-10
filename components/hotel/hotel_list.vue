@@ -2,11 +2,7 @@
   <div class="hotel_list">
     <el-row type="flex">
       <el-col :span="8" style="width:320px;height:210px">
-<<<<<<< HEAD
-        <nuxt-link :to="`/hotel/detail?id=${data.id}`">
-=======
         <nuxt-link :to="{path:'hotel/detail',query:{id:data.id}}">
->>>>>>> 969e0797e1904d731e147ec5d1af20aa384d9bfa
           <img
             :src="data.photos"
             width="100%"
@@ -75,13 +71,9 @@ export default {
     }
   },
 
-<<<<<<< HEAD
   mounted() {
     
   }
-=======
-  mounted() {}
->>>>>>> 969e0797e1904d731e147ec5d1af20aa384d9bfa
 };
 </script>
 <style lang="less" scoped>
