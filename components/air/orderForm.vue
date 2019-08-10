@@ -222,6 +222,12 @@ export default {
                 }
             }).then(res => {
                 console.log('成功了',res);
+                this.$router.push({
+                    url: '/air/pay',
+                    query: {
+                        id
+                    }
+                })
             })
         }
 
