@@ -1,8 +1,13 @@
 <template>
+<<<<<<< HEAD
+    <div class="box">
+       机票首页
+=======
   <div class="hotel">
     <!-- 头部面包屑 -->
     <div class="breadcrumb">
       <Breadcrumb></Breadcrumb>
+>>>>>>> 466431a1b45ff7339750a18ef297df63cb2e273a
     </div>
     <!-- 搜索栏 -->
     <div class="search">
@@ -48,7 +53,6 @@
     </div>
   </div>
 </template>
-
 <script>
 import Breadcrumb from "@/components/hotel/breadcrumb";
 import Search from "@/components/hotel/search";
@@ -57,6 +61,13 @@ import HotelMap from "@/components/hotel/hotelMap";
 import Filterss from "@/components/hotel/filterss";
 import HotelList from "@/components/hotel/hotel_list";
 export default {
+<<<<<<< HEAD
+    
+}
+</script>
+<style lang="less" scoped>
+
+=======
   components: {
     Breadcrumb,
     Search,
@@ -200,5 +211,6 @@ export default {
     margin: 20px 0px;
   }
 }
+>>>>>>> 466431a1b45ff7339750a18ef297df63cb2e273a
 </style>
 
