@@ -1,55 +1,58 @@
 <template>
-<<<<<<< HEAD
-    <div class="box">
-       机票首页
-=======
-  <div class="hotel">
-    <!-- 头部面包屑 -->
-    <div class="breadcrumb">
-      <Breadcrumb></Breadcrumb>
->>>>>>> 466431a1b45ff7339750a18ef297df63cb2e273a
-    </div>
-    <!-- 搜索栏 -->
-    <div class="search">
-      <Search @getSearchData="getSearchData" @cities="cities"></Search>
-    </div>
-    <!-- 介绍栏和地图栏 -->
-    <div class="introduce">
-      <el-row type="flex">
-        <!-- 介绍栏 -->
-        <el-col :span="14">
-          <Introduce></Introduce>
-        </el-col>
-        <!-- 地图 -->
-        <el-col :span="10">
-          <HotelMap></HotelMap>
-        </el-col>
-      </el-row>
-    </div>
-    <!-- 过滤栏 -->
-    <div class="filters">
-      <Filterss></Filterss>
-    </div>
-    <!-- 酒店列表 分页栏 -->
-    <div class="hotel_list">
-      <HotelList v-for="(item,index) in currentHotelList" :key="index" :data="item" @hotels="hotels"></HotelList>
-      <!-- 分页 -->
-      <!-- @size-change：修改条数时候触发
+  <div class="box">
+    机票首页
+    <div class="hotel">
+      <!-- 头部面包屑 -->
+      <div class="breadcrumb">
+        <Breadcrumb></Breadcrumb>
+      </div>
+      <!-- 搜索栏 -->
+      <div class="search">
+        <Search @getSearchData="getSearchData" @cities="cities"></Search>
+      </div>
+      <!-- 介绍栏和地图栏 -->
+      <div class="introduce">
+        <el-row type="flex">
+          <!-- 介绍栏 -->
+          <el-col :span="14">
+            <Introduce></Introduce>
+          </el-col>
+          <!-- 地图 -->
+          <el-col :span="10">
+            <HotelMap></HotelMap>
+          </el-col>
+        </el-row>
+      </div>
+      <!-- 过滤栏 -->
+      <div class="filters">
+        <Filterss></Filterss>
+      </div>
+      <!-- 酒店列表 分页栏 -->
+      <div class="hotel_list">
+        <HotelList
+          v-for="(item,index) in currentHotelList"
+          :key="index"
+          :data="item"
+          @hotels="hotels"
+        ></HotelList>
+        <!-- 分页 -->
+        <!-- @size-change：修改条数时候触发
                     @current-change：修改页数时候触发
                     current-page：当前页面
                     page-size：当前页面显示的条数
-      total：总条数-->
-      <el-pagination
-        @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
-        :current-page="hotelObj.pageIndex"
-        :prev-text="'< 上一页'"
-        :next-text="'下一页 >'"
-        :page-sizes="[1, 2, 3, 4]"
-        :page-size="hotelObj.pageSize"
-        layout="total, sizes, prev, pager, next, jumper"
-        :total="hotelObj.total"
-      ></el-pagination>
+        total：总条数-->
+        <el-pagination
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
+          :current-page="hotelObj.pageIndex"
+          :prev-text="'< 上一页'"
+          :next-text="'下一页 >'"
+          :page-sizes="[1, 2, 3, 4]"
+          :page-size="hotelObj.pageSize"
+          layout="total, sizes, prev, pager, next, jumper"
+          :total="hotelObj.total"
+        ></el-pagination>
+      </div>
     </div>
   </div>
 </template>
@@ -61,13 +64,6 @@ import HotelMap from "@/components/hotel/hotelMap";
 import Filterss from "@/components/hotel/filterss";
 import HotelList from "@/components/hotel/hotel_list";
 export default {
-<<<<<<< HEAD
-    
-}
-</script>
-<style lang="less" scoped>
-
-=======
   components: {
     Breadcrumb,
     Search,
@@ -159,20 +155,21 @@ export default {
       // console.log(this.currentHotelList,this.hotelList)
       this.currentHotelList = this.hotelList.slice(
         (this.hotelObj.pageIndex - 1) * this.hotelObj.pageSize,
-        (this.hotelObj.pageIndex - 1) * this.hotelObj.pageSize + this.hotelObj.pageSize
+        (this.hotelObj.pageIndex - 1) * this.hotelObj.pageSize +
+          this.hotelObj.pageSize
       );
       // console.log("当前的显示列表数据", this.currentHotelList);
     },
     // 修改分页条数触发
     handleSizeChange(v) {
-      this.hotelObj.pageSize=v
-      this.setDataList()
+      this.hotelObj.pageSize = v;
+      this.setDataList();
     },
     // 切换当前页码触发
     handleCurrentChange(v) {
       // console.log(v)
-      this.hotelObj.pageIndex=v
-      this.setDataList()
+      this.hotelObj.pageIndex = v;
+      this.setDataList();
     }
   },
   mounted() {
@@ -180,15 +177,14 @@ export default {
     this.hotels({ city: this.query.city }, res => {
       // console.log("hotels 酒店列表", res);
       this.hotelList = res.data;
-      this.cacheHotelList = {...res.data};
+      this.cacheHotelList = { ...res.data };
       this.hotelObj.total = res.total;
-      this.currentHotelList= this.hotelList.slice(0, 1)
+      this.currentHotelList = this.hotelList.slice(0, 1);
       // console.log('当前显示',this.currentHotelList,'总条数',this.hotelObj.total,'缓存',this.cacheHotelList,'大数据',this.hotelList)
     });
   }
 };
 </script>
-
 <style lang="less" scoped>
 .hotel {
   width: 1000px;
@@ -211,6 +207,5 @@ export default {
     margin: 20px 0px;
   }
 }
->>>>>>> 466431a1b45ff7339750a18ef297df63cb2e273a
 </style>
 
