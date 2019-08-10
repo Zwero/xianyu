@@ -93,6 +93,12 @@
 </template>
 <script>
 export default {
+  props:{
+currentHotelList:{
+  type:Array,
+  default:[]
+}
+  },
   data() {
     return {
       price: 4000,
@@ -117,6 +123,11 @@ export default {
     //   点击菜单项后会触发事件住宿等级
     handleCommand1(v) {
       this.title.label1 = v;
+      console.log(this.currentHotelList)
+      // let arr=this.currentHotelList.filter(item=>{
+
+      // })
+
     },
     // 住宿类型
     handleCommand2(v) {

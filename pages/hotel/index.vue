@@ -24,7 +24,7 @@
       </div>
       <!-- 过滤栏 -->
       <div class="filters">
-        <Filterss @options="options"></Filterss>
+        <Filterss @options="options" :currentHotelList='currentHotelList'></Filterss>
       </div>
       <!-- 酒店列表 分页栏 -->
       <div class="hotel_list">
