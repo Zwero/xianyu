@@ -166,6 +166,7 @@ export default {
     // 确认选择日期时触发
     handleDate(value) {
       this.form.departDate = moment(value).format("YYYY-MM-DD");
+      // console.log('出发时间',this.form.departDate,value)
     },
     // 触发和目标城市切换时触发
     handleReverse() {
