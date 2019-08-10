@@ -161,8 +161,6 @@ export default {
         this.insurances.push(item.id);
       }
     },
-
-<<<<<<< HEAD
     // 提交订单
     handleSubmit() {
       // console.log(123);
@@ -185,38 +183,36 @@ export default {
           // 不通过
           valid = false;
           this.$alert("乘机人信息不能为空", "提示", { type: "warning" });
-=======
-            // 提交订单
-            this.$axios({
-                url: "/airorders",
-                method: 'POST',
-                data,
-                // 头信息不是axios的，ajax也有
-                headers: {
-                    // JWT是后台的token的标准，前端只管传递一个Bearer
-                    Authorization: `Bearer ${ this.$store.state.user.userInfo.token }`
-                }
-            }).then(res => {
-<<<<<<< HEAD
-                console.log('成功了',res);
-                this.$router.push({
-                    url: '/air/pay',
-                    query: {
-                        id
-                    }
-                })
-=======
-                const {data: {id}} = res.data;
-                // 跳转到付款页
-                this.$router.push({
-                    path: "/air/pay",
-                    query: {
-                       id
-                    }
-                });
->>>>>>> 466431a1b45ff7339750a18ef297df63cb2e273a
-            })
->>>>>>> 8a701fbb257f8ca2a8e2797a1f4c02cc48fe81b2
+
+          // 提交订单
+          this.$axios({
+            url: "/airorders",
+            method: "POST",
+            data,
+            // 头信息不是axios的，ajax也有
+            headers: {
+              // JWT是后台的token的标准，前端只管传递一个Bearer
+              Authorization: `Bearer ${this.$store.state.user.userInfo.token}`
+            }
+          }).then(res => {
+            console.log("成功了", res);
+            this.$router.push({
+              url: "/air/pay",
+              query: {
+                id
+              }
+            });
+            const {
+              data: { id }
+            } = res.data;
+            // 跳转到付款页
+            this.$router.push({
+              path: "/air/pay",
+              query: {
+                id
+              }
+            });
+          });
         }
       });
       // 如果不通过直接返回
