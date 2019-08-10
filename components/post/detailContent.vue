@@ -3,7 +3,7 @@
     <!-- <p v-html="content"></p> -->
     <h1>{{content.title}}</h1>
     <p class="time">
-      <!-- <span>攻略: {{content.city.created_at}}</span> -->
+      <span>攻略: {{content.city&&content.city.created_at}}</span>
       <span>阅读: {{content.watch}}</span>
     </p>
     <!-- 文章内容 -->
@@ -15,10 +15,10 @@
         <el-col :span="3" class="cursorico">
           <div class="grid-content bg-purple-light">
             <i class="el-icon-edit"></i>
-            <p>评论(100)</p>
+            <p>评论100</p>
           </div>
         </el-col>
-        <el-col :span="3" class="cursorico">
+        <el-col :span="3" class="cursorico" @click.native="starEssay">
           <div class="grid-content bg-purple-light">
             <i class="el-icon-star-off"></i>
             <p>收藏</p>
@@ -31,9 +31,9 @@
           </div>
         </el-col>
         <el-col :span="3" class="cursorico">
-          <div class="grid-content bg-purple-light">
+          <div class="grid-content bg-purple-light" @click="likeEssay">
             <i class="el-icon-thumb"></i>
-            <p>点赞(42)</p>
+            <p>点赞{{content.like}}</p>
           </div>
         </el-col>
       </el-row>
@@ -49,26 +49,65 @@ export default {
     };
   },
   methods: {
+    // 收藏文章
+    starEssay() {
+      // console.log(123);
+      const id = this.$route.query.id;
+      console.log(id);
+      this.$axios({
+        url: "posts/star",
+        params: {
+          id
+        },
+        headers: {
+          Authorization: `Bearer ${this.$store.state.user.userInfo.token}`
+        }
+      }).then(res => {
+        // console.log(res);
+      });
+    },
+
+    // 点赞
+    likeEssay() {
+      // console.log(123);
+      const id = this.$route.query.id;
+      console.log(id);
+      this.$axios({
+        url: "posts/like",
+        params: {
+          id
+        },
+        headers: {
+          Authorization: `Bearer ${this.$store.state.user.userInfo.token}`
+        }
+      }).then(res => {
+        // console.log(res);
+      });
+    },
+
+    // 根据id获取相应的文章数据
     init() {
-      console.log(123);
-      let id = this.$route.id;
-      console.log("这是你要的ID", id);
+      const id = this.$route.query.id;
+      // const id = 7
+      // console.log('这是id',id);
       this.$axios({
         url: "posts",
         params: {
-          id: 4
+          id
         }
       }).then(res => {
-        console.log("文章内容", res);
         this.content = res.data.data[0];
-        console.log(this.content);
-        // console.log(this.content.city.created_at);
+        // console.log("文章内容", this.content);
       });
     }
   },
   mounted() {
-    console.log('开始');
-    this.init()
+    this.init();
+  },
+  watch: {
+    $route() {
+      this.init();
+    }
   }
 };
 </script>

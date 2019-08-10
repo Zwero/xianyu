@@ -13,6 +13,10 @@
     <div class="contents">
         <DetailContent/>
     </div>
+    <!-- 评论区 -->
+    <div class="comments">
+        <DetailComments/>
+    </div>
   </div>
 </template>
 
@@ -22,11 +26,13 @@ import DetailTitleRight from '@/components/post/detailTitleRight'
 // 内容详情
 import DetailContent from '@/components/post/detailcontent'
 // 评论区
+import DetailComments from '@/components/post/detailComments'
 
 export default {
     components: {
         DetailTitleRight,
-        DetailContent
+        DetailContent,
+        DetailComments
     },
 };
 </script>
@@ -37,7 +43,6 @@ export default {
         margin: 0 auto;
         margin-top: 20px;
         position: relative;
-        // height: 1000px;
         min-height: 500px;
         .bread {
             width: 280px;
