@@ -79,7 +79,8 @@ export default {
       value: 3,
       max: 3
     };
-  }
+  },
+  
 };
 </script>
 <style lang="less" scoped>

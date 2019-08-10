@@ -2,7 +2,7 @@
   <div class="hotel_list">
     <el-row type="flex">
       <el-col :span="8" style="width:320px;height:210px">
-        <nuxt-link :to="`/hotel/detail/`+data.id">
+        <nuxt-link :to="`/hotel/detail/${data.id}`">
           <img
             :src="data.photos"
             width="100%"
