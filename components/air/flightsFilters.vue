@@ -75,56 +75,55 @@ export default {
     };
   },
 
-    methods: {
+  methods: {
     // 选择机场时候触发
     handleAirport(value) {
-        const arr = this.data.flights.filter(v =>
-        v.airport_name === value
-        );
-        this.$emit('setDataList', arr)
+      const arr = this.data.flights.filter(v => {
+        return v.airport_name === value;
+      });
+      this.$emit("setDataList", arr);
     },
 
     // 选择出发时间时候触发
     handleFlightTimes(value) {
-        // const [from, to] = value.split(','); // [6,12]
-        console.log(value);
-        const [from, to] = value.split(","); // [6,12]
+      // const [from, to] = value.split(','); // [6,12]
+      console.log(value);
+      const [from, to] = value.split(","); // [6,12]
 
-         const arr = this.data.flights.filter(v => {
-             // 出发时间小时
-             const start = +v.dep_time.split(":")[0];
-             return start >= from && start < to;
-         });
+      const arr = this.data.flights.filter(v => {
+        // 出发时间小时
+        const start = +v.dep_time.split(":")[0];
+        return start >= from && start < to;
+      });
 
-         this.$emit("setDataList", arr);
-
+      this.$emit("setDataList", arr);
     },
 
     // 选择航空公司时候触发
     handleCompany(value) {
-        const arr = this.data.flights.filter(v => 
-        v.airline_name === value
-        );
-        this.$emit('setDataList', arr)
+      const arr = this.data.flights.filter(v => {
+        return v.airline_name === value;
+      });
+      this.$emit("setDataList", arr);
     },
 
     // 选择机型时候触发
     handleAirSize(value) {
-        const arr = this.data.flights.filter(v => 
-            v.plane_size === value
-        );
+      const arr = this.data.flights.filter(v => {
+        return v.plane_size === value;
+      });
 
-        this.$emit("setDataList", arr);
+      this.$emit("setDataList", arr);
     },
 
     // 撤销条件时候触发
     handleFiltersCancel() {
-        this.airport = "";
-        this.flightTimes = "";
-        this.company = "";
-        this.airSize = "";
-        
-        this.$emit("setDataList", this.data.flights);
+      this.airport = "";
+      this.flightTimes = "";
+      this.company = "";
+      this.airSize = "";
+
+      this.$emit("setDataList", this.data.flights);
     }
   }
 };
