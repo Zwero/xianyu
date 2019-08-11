@@ -33,32 +33,34 @@
 
     </el-row>
 
-    <!-- 评论为空时显示 -->
-    <!-- <div class="empty" v-else>暂无评论，赶紧抢占沙发！</div> -->
     <!-- 留言板 -->
-    <div class="message" v-for="(item, index) in messageText" :key="index">
+    <div  class="message" v-for="(item, index) in messageText" :key="index">
       <div class="messageHeader">
         <img :src="$axios.defaults.baseURL + item.account.defaultAvatar" class="userImages" />
         {{item.account.nickname}}
         {{item.created_at | timeFormat}}
+        <span @click="reply(item.id)">回复</span>
         <p>{{item.content}}</p>
         <div v-for="(item, index) in item.pics" :key='index'>
           <img :src="$axios.defaults.baseURL + item.url" class="messImg"/>
+          
         </div>
       </div>
     </div>
+    <!-- 评论为空时显示 -->
+    <!-- <div class="empty" v-else>暂无评论，赶紧抢占沙发！</div> -->
+
 
     <!-- 分页 -->
     <el-pagination
-      @size-change="handleSizeChange"
-      @current-change="handleCurrentChange"
+      @size-change="handleSize"
+      @current-change="handleCurrent"
       :current-page="pageIndex"
       :page-sizes="[2, 4, 6, 8]"
       :page-size="pageSize"
       layout="total, sizes, prev, pager, next, jumper"
       :total="total"
       v-show="total!==0"
-      class="fenye"
     ></el-pagination>
   </div>
 </template>
@@ -87,18 +89,25 @@ export default {
   },
 
   methods: {
+    // 获取回复id
+    reply (id) {
+      console.log('回复id',id);
+    },
     // 分页
     // 切换条数触发
-    handleSizeChange(value) {
+    handleSize(value) {
       // 修改分页条数
       this.pageSize = value;
+      console.log(value,'条数');
+
       // 获取分页的数据
       this.getComment();
     },
     //选择页数时触发
-    handleCurrentChange(value) {
+    handleCurrent(value) {
       // 修改页数
       this.pageIndex = value;
+      console.log(value,'页数');
       // 获取分页的数据
       this.getComment();
     },
@@ -147,12 +156,13 @@ export default {
           Authorization: `Bearer ${this.$store.state.user.userInfo.token}`
         }
       }).then(res => {
-        console.log("成功了", res);
+        // console.log("成功了", res);
         // 清空记录
         this.addForm.pics = [];
         this.addForm.content = "";
         this.addForm.follow = "";
         this.getComment()
+        this.pageSize = 1
       });
     },
 
@@ -167,13 +177,14 @@ export default {
           _limit: this.pageSize,
           // 每页显示2，显示第二页3-4
           // 每页显示的条数1,2;3-4；每页显示的条数3:0-3
-          _start: (this.pagenum - 1) * this.pageSize
+          _start: (this.pageIndex - 1) * this.pageSize
         }
       }).then(res => {
+        this.total = res.data.total;
         this.messageText = res.data.data;
         console.log("文章评论", this.messageText);
-        this.toltal = this.messageText.length;
-        console.log(this.toltal, "长度");
+        console.log(this.total, "长度");
+        console.log(res.data.total, "长度");
       });
     }
   },
@@ -183,6 +194,12 @@ export default {
     // 日期格式
     timeFormat(value) {
       return moment(value).format("YYYY-MM-DD HH:mm:ss");
+    }
+  },
+
+  watch: {
+    $route () {
+      this.getComment
     }
   },
 
@@ -212,6 +229,13 @@ export default {
     height: 100px;
     border: 1px #cccccc solid;
     .messageHeader {
+      span {
+        margin-left: 20px;
+        &:hover {
+          color: aqua;
+          cursor: pointer;
+        }
+      }
       padding: 20px 20px 5px;
       .userImages {
         width: 16px;
