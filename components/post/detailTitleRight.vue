@@ -53,8 +53,8 @@ export default {
     init() {
       // 获取数据
     const id = this.$route.query.id;
-    console.log('8848');
-	  console.log('相关攻略id',id);
+    // console.log('8848');
+	  // console.log('相关攻略id',id);
       this.$axios({
         url: "/posts/recommend",
         params: {
