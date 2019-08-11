@@ -33,7 +33,7 @@
               v-for="(item2,index2) in picture"
               :key="index2"
               :src="`${item2.urls}`"
-              v-if="current === index2"
+              v-show="current === index2"
               alt
             />
           </i>
@@ -136,12 +136,12 @@ export default {
       current: 0,
       // 图片
       picture: [
-        { urls: "http://127.0.0.1:1337/uploads/1.jpeg" },
-        { urls: "http://127.0.0.1:1337/uploads/2.jpeg" },
-        { urls: "http://127.0.0.1:1337/uploads/3.jpeg" },
-        { urls: "http://127.0.0.1:1337/uploads/4.jpeg" },
-        { urls: "http://127.0.0.1:1337/uploads/5.jpeg" },
-        { urls: "http://127.0.0.1:1337/uploads/6.jpeg" }
+        { urls: "http://157.122.54.189:9093/images/hotel-pics/1.jpeg" },
+        { urls: "http://157.122.54.189:9093/images/hotel-pics/2.jpeg" },
+        { urls: "http://157.122.54.189:9093/images/hotel-pics/3.jpeg" },
+        { urls: "http://157.122.54.189:9093/images/hotel-pics/4.jpeg" },
+        { urls: "http://157.122.54.189:9093/images/hotel-pics/5.jpeg" },
+        { urls: "http://157.122.54.189:9093/images/hotel-pics/6.jpeg" }
       ],
       totals: {
         name: "",
@@ -154,13 +154,11 @@ export default {
       id: ""
     };
   },
-
   methods: {
     // 点击切换图片
     handleClick(index) {
       this.current = index;
     },
-
     // 初始化
     getData() {
       this.$axios({
@@ -190,7 +188,6 @@ export default {
 .hotelDetail {
   width: 1000px;
   margin: 0 auto;
-
   .crumbs {
     padding: 20px 0;
   }
@@ -222,10 +219,8 @@ export default {
         // border: 1px solid red;
         margin-right: 20px;
         // overflow: hidden;
-
         i {
           display: block;
-
           width: 100%;
           height: 100%;
           // background: blue;
@@ -245,7 +240,6 @@ export default {
           width: 160px;
           height: 110px;
           // background: orange;
-
           img {
             width: 100%;
             height: 100%;
@@ -265,7 +259,6 @@ export default {
       .el-col-24 {
         width: 166px;
       }
-
       .grade {
         position: relative;
         .el-rates {

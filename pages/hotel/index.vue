@@ -24,7 +24,7 @@
       </div>
       <!-- 过滤栏 -->
       <div class="filters">
-        <Filterss @options="options"></Filterss>
+        <Filterss @options="options" :cacheHotelList='cacheHotelList' @setDataList='setDataList'></Filterss>
       </div>
       <!-- 酒店列表 分页栏 -->
       <div class="hotel_list">
@@ -145,11 +145,11 @@ export default {
     // 获取分页的数据
     setDataList(arr) {
       // 过滤组件调用时候返回的过滤后的数据
-      // if (arr) {
-      //   // 替换掉列表数据
-      //   this.hotelList = arr;
-      //   this.hotelObj.total = arr.length;
-      // }
+      if (arr) {
+        // 替换掉列表数据
+        this.hotelList = arr;
+        this.hotelObj.total = arr.length;
+      }
       // 修改当前的显示列表数据
       // console.log(this.currentHotelList,this.hotelList)
       this.currentHotelList = this.hotelList.slice(
@@ -176,7 +176,7 @@ export default {
     this.hotels({ city: this.query.city }, res => {
       // console.log("hotels 酒店列表", res);
       this.hotelList = res.data;
-      this.cacheHotelList = { ...res.data };
+      this.cacheHotelList =  [...res.data] ;
       this.hotelObj.total = res.total;
       this.currentHotelList = this.hotelList.slice(0, 1);
       // console.log('当前显示',this.currentHotelList,'总条数',this.hotelObj.total,'缓存',this.cacheHotelList,'大数据',this.hotelList)

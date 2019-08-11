@@ -93,6 +93,12 @@
 </template>
 <script>
 export default {
+  props: {
+    cacheHotelList: {
+      type: Array,
+      default: []
+    }
+  },
   data() {
     return {
       price: 4000,
@@ -117,18 +123,46 @@ export default {
     //   点击菜单项后会触发事件住宿等级
     handleCommand1(v) {
       this.title.label1 = v;
+      // console.log(this.cacheHotelList, v);
+      
+      let arr = this.cacheHotelList.filter(item => {
+        if (item.hotellevel) {
+          // console.log(item.hotellevel.name,v);
+         return item.hotellevel.name === v;
+        }
+      });
+      // console.log("123", arr);
+      this.$emit("setDataList", arr);
     },
     // 住宿类型
     handleCommand2(v) {
       this.title.label2 = v;
+      let arr = this.cacheHotelList.filter(item => {
+        if (item.hoteltype) {
+         return item.hoteltype.name === v;
+        }
+      });
+      this.$emit("setDataList", arr)
     },
     // 酒店设施
     handleCommand3(v) {
       this.title.label3 = v;
+       let arr = this.cacheHotelList.filter(item => {
+        if (item.hotelassets) {
+         return item.hotelassets.name === v;
+        }
+      });
+      this.$emit("setDataList", arr)
     },
     // 酒店品牌
     handleCommand4(v) {
       this.title.label4 = v;
+      let arr = this.cacheHotelList.filter(item => {
+        if (item.hotelbrand) {
+         return item.hotelbrand.name === v;
+        }
+      });
+      this.$emit("setDataList", arr)
     }
   },
   mounted() {
